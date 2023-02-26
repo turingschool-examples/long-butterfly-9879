@@ -3,7 +3,7 @@
 
 <div id= "Add Ride">
   <h3>Add Ride</h3>
-  <%= form_with url: "/mechanic_ride", method: :post, local: true do |form| %>
+  <%= form_with url: "/mechanic_rides", method: :post, local: true do |form| %>
     <%= hidden_field_tag :mechanic_id, "#{@mechanic.id}" %>
     <%= form.number_field "ride_id" %>
     <%= form.submit "Add Ride" %>
