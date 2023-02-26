@@ -33,5 +33,29 @@ RSpec.describe "Mechanics Show Page" do
         expect(page).to_not have_content("Twister")
       end
     end
+
+    it 'has a form to add an existing ride to their workload' do 
+      visit mechanic_path(@mechanic_1) 
+
+      within(".add_ride_to_workload_form") do 
+        expect(page).to have_content("Add Ride to Workload")
+        # expect(page).to have_field(:ride_id)
+      end
+    end
+
+    it 'fills in field of an id for existing ride and licks submit. Show page has new ride added' do 
+      visit mechanic_path(@mechanic_1)  
+
+      within(".add_ride_to_workload_form") do 
+        fill_in("Ride ID", with: @ride_4.id)
+        click_button("Submit")
+
+        expect(current_path).to eq(mechanic_path(@mechanic_1))
+      end
+      visit mechanic_path(@mechanic_1)
+      within(".mechanic_info") do 
+          expect(page).to have_content("Twister")
+        end
+    end
   end
 end
