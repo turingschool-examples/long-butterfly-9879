@@ -7,7 +7,7 @@
 <% end %>
 </ul>
 
-<h3>Rides: </h3>
+<h3>Rides:</h3>
 <ul>
 <% @rides_and_avg_exp.each do |ride| %>
   <li><%= "Ride Name: #{ride.name}, Avg mechanic Experience: #{ride.average_experience.round(2)}"%></li>
