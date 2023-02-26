@@ -9,3 +9,15 @@
       </ul>
     <% end %>
 </div>
+
+<div class = "add_ride_to_workload_form" >
+  <h3>Add Ride to Workload</h3>
+  <%= form_with model: @mechanic_ride, url: mechanic_rides_path, local: true do |form| %>
+    <%= form.label :ride_id, "Ride ID" %>
+    <%= form.number_field :ride_id %>
+
+    <%= form.hidden_field :mechanic_id, value: @mechanic.id %>
+
+    <%= form.button "Submit"%>
+  <% end %>
+</div>
