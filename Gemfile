@@ -41,6 +41,7 @@ group :development, :test do
   gem 'launchy'
   gem 'pry'
   gem 'simplecov'
+  gem 'net-http'
   gem 'shoulda-matchers', '~> 3.1'
 end
 
