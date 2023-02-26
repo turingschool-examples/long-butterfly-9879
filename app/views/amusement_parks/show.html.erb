@@ -1,0 +1,11 @@
+<%="Amusement Park Name: #{@amusement_park.name}"%>
+<%="Price of Admission: #{@amusement_park.admission_cost}"%>
+
+
+
+<div id="mechanics">
+  <p>Mechanics working on rides</p>
+    <%@unique_mechanics.each do |mechanic|%>
+      <p><%=mechanic%></p>
+    <%end%>
+</div>
