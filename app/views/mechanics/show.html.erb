@@ -6,3 +6,10 @@
   <li><%= ride.name %></li>
 <% end %>
 </ul>
+
+<h3>Add an existing ride (by id) to this mechanic: </h3>
+  <%= form_with url: "/mechanics/#{@mechanic.id}/rides", method: :post, local: true do |form| %>
+    <%= form.label :ride_id, "Ride ID" %>
+    <%= form.number_field :ride_id %>
+    <%= form.submit "Submit" %>
+  <% end %>
