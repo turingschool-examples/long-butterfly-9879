@@ -22,7 +22,6 @@ RSpec.describe 'Amusement Park Show Page' do
 
         expect(page).to have_content("Amusement Park Name: #{@amusement_park_1.name}")
         expect(page).to have_content("Price of Admission: #{@amusement_park_1.admission_cost}")
-
       end
 
       it "I see a unique list of mechanics working on that parks' rides" do 
@@ -31,8 +30,8 @@ RSpec.describe 'Amusement Park Show Page' do
         within("div#mechanics") do 
           expect(page).to have_selector('p', text: @mechanic_1.name, count: 1)
           expect(page).to have_selector('p', text: @mechanic_2.name, count: 1)
-          end
-        end 
+        end
+      end 
 
       it "shows a list of all the park's rides" do 
         visit "/amusement_parks/#{@amusement_park_1.id}"
@@ -43,7 +42,6 @@ RSpec.describe 'Amusement Park Show Page' do
           expect(page).to have_content("#{@ride1.name} has mechanics with an average experience of 7 years")
 
           expect(page).to have_content("#{@ride3.name} has mechanics with an average experience of 5 years")
-
         end 
       end 
     
