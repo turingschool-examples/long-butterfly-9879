@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Amusement Park Show Page' do
   before(:each) do 
     @amusement_park_1 = AmusementPark.create!(name: "Disney", admission_cost: 345)
-    @mechanic_1 = Mechanic.create!(name: "Hady", years_experience: 5)
+    @mechanic_1 = Mechanic.create!(name: "Hady", years_experience: 9)
     @mechanic_2 = Mechanic.create!(name: "Malena", years_experience: 5)
     @ride1 = @amusement_park_1.rides.create!(name: "Kraken", thrill_rating: 3, open: true)
     @ride2 = @amusement_park_1.rides.create!(name: "Jungle Rush", thrill_rating: 10, open: false)
@@ -27,13 +27,27 @@ RSpec.describe 'Amusement Park Show Page' do
 
       it "I see a unique list of mechanics working on that parks' rides" do 
         visit "/amusement_parks/#{@amusement_park_1.id}"
-save_and_open_page
+
         within("div#mechanics") do 
           expect(page).to have_selector('p', text: @mechanic_1.name, count: 1)
           expect(page).to have_selector('p', text: @mechanic_2.name, count: 1)
-        end
+          end
+        end 
 
-      end
+      it "shows a list of all the park's rides" do 
+        visit "/amusement_parks/#{@amusement_park_1.id}"
+
+        within("div#park_rides") do 
+          expect(page).to have_content("#{@ride2.name} has mechanics with an average experience of 9 years")
+
+          expect(page).to have_content("#{@ride1.name} has mechanics with an average experience of 7 years")
+
+          expect(page).to have_content("#{@ride3.name} has mechanics with an average experience of 5 years")
+
+        end 
+      end 
+    
+
     end 
   end 
 end 

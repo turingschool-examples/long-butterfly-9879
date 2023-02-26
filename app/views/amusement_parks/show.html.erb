@@ -9,3 +9,10 @@
       <p><%=mechanic%></p>
     <%end%>
 </div>
+
+<div id="park_rides">
+  <p> List of Park Rides</p>
+  <%@all_rides.each do |ride|%>
+    <%="#{ride.name} has mechanics with an average experience of #{ride.average.to_i} years" %>
+  <%end%>
+</div>
