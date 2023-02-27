@@ -77,7 +77,7 @@ describe 'As a visitor', type: :feature do
       RideMechanic.create!(mechanic: mechanic4, ride: @roller_coaster)
 
       visit "/amusement_parks/#{@jasmine_world.id}"
-save_and_open_page
+
       within '#rides' do
         expect(@bumper_cars.name).to appear_before(@ferris_wheel.name)
         expect(@ferris_wheel.name).to appear_before(@haunted_house.name)
