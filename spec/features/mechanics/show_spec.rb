@@ -34,7 +34,7 @@ RSpec.describe '/mechanics/id', type: :feature do
     it "I see a form to add a ride to their workload" do 
       visit "/mechanics/#{@jack_mechanic.id}"
 
-      expect(page).to have_content("Add a Ride to Workload")
+      expect(page).to have_content("Add a Ride to Workload:")
       expect(page).to have_field(:ride_id)
       expect(page).to have_button("Submit")
     end
@@ -43,7 +43,7 @@ RSpec.describe '/mechanics/id', type: :feature do
       visit "/mechanics/#{@jack_mechanic.id}"
 
       expect(page).to_not have_content("#{@jaws.name}")
-
+      
       fill_in("Ride Id:", with: "#{@jaws.id}")
       click_button("Submit")
 
