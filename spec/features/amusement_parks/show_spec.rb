@@ -31,11 +31,14 @@ RSpec.describe '/amusment_parks/:id', type: :feature do
     # User Story 3
     it "I also see the UNIQUE names of all mechanics that are working on that park's rides" do
       visit "/amusement_parks/#{@universal.id}"
-      expect(page).to have_content("Currently Working Mechanics:")
-      expect(page).to have_content("#{@jack_mechanic.name}")
-      expect(page).to have_content("#{@oliver_mechanic.name}")
-save_and_open_page
-      expect(page).to_not have_content("#{@mary_mechanic.name}")
+
+      within "#now_working" do
+        expect(page).to have_content("Currently Working Mechanics:")
+        expect(page).to have_content("#{@jack_mechanic.name}")
+        expect(page).to have_content("#{@oliver_mechanic.name}")
+        
+        expect(page).to_not have_content("#{@mary_mechanic.name}")
+      end
     end
   end
 end
