@@ -20,7 +20,8 @@ describe 'As a visitor', type: :feature do
       RideMechanic.create!(mechanic: @mechanic1, ride: @roller_coaster)
       RideMechanic.create!(mechanic: @mechanic2, ride: @haunted_house)
       RideMechanic.create!(mechanic: @mechanic1, ride: @bumper_cars)  
-      RideMechanic.create!(mechanic: @mechanic3, ride: @swings)
+      RideMechanic.create!(mechanic: @mechanic2, ride: @ferris_wheel)
+      RideMechanic.create!(mechanic: @mechanic1, ride: @haunted_house)
     end
 
     it "I see the name and price of admissions for that amusement park" do
@@ -38,6 +39,49 @@ describe 'As a visitor', type: :feature do
         expect(page).to have_content(@mechanic1.name, count: 1)
         expect(page).to have_content(@mechanic2.name, count: 1)
         expect(page).to_not have_content(@mechanic3.name)
+      end
+    end
+
+    it "I see a list of all the park's rides" do
+      visit "/amusement_parks/#{@jasmine_world.id}"
+
+      within "#rides" do
+        expect(page).to have_content(@ferris_wheel.name)
+        expect(page).to have_content(@roller_coaster.name)
+        expect(page).to have_content(@haunted_house.name)
+        expect(page).to have_content(@bumper_cars.name)
+        expect(page).to_not have_content(@swings.name)
+      end
+    end
+
+    it "Next to each ride name, I see the average experience of the mechanics working on the ride" do
+      mechanic4 = Mechanic.create!(name: "Hailey", years_experience: 13)
+
+      RideMechanic.create!(mechanic: mechanic4, ride: @haunted_house)
+      RideMechanic.create!(mechanic: mechanic4, ride: @roller_coaster)
+
+      visit "/amusement_parks/#{@jasmine_world.id}"
+
+      within '#rides' do
+        expect(page).to have_content("#{@ferris_wheel.name} - 3.5 years experience(average)")
+        expect(page).to have_content("#{@roller_coaster.name} - 7.5 years experience(average)")
+        expect(page).to have_content("#{@haunted_house.name} - 6.67 years experience(average)")
+        expect(page).to have_content("#{@bumper_cars.name} - 2.0 years experience(average)")
+      end
+    end
+
+    it "lists the rides in order of average mechanic experience (least to most)" do
+      mechanic4 = Mechanic.create!(name: "Hailey", years_experience: 13)
+
+      RideMechanic.create!(mechanic: mechanic4, ride: @haunted_house)
+      RideMechanic.create!(mechanic: mechanic4, ride: @roller_coaster)
+
+      visit "/amusement_parks/#{@jasmine_world.id}"
+save_and_open_page
+      within '#rides' do
+        expect(@bumper_cars.name).to appear_before(@ferris_wheel.name)
+        expect(@ferris_wheel.name).to appear_before(@haunted_house.name)
+        expect(@haunted_house.name).to appear_before(@roller_coaster.name)
       end
     end
   end

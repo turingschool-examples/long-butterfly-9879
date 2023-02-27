@@ -6,3 +6,9 @@
   <li><%= mechanic.name %></li>
 <% end %>
 </div>
+<h3><%= @amusement_park.name %>'s Rides</h3>
+<div id="rides">
+<% @rides.each do |ride| %>
+  <p><%= ride.name %> - <%= ride.average.round(2) %> years experience(average)</p>
+<% end %>
+</div>
