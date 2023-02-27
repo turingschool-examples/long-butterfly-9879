@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'As a user', type: :feature do
   describe 'When I visit a mechanic show page' do
     before(:each) do
-      @jasmine_world = AmusementPark.create!(name: "Jasmine World", admission_cost: 2500)
+      @jasmine_world = AmusementPark.create!(name: "Jasmine World", admission_cost: 25)
 
       @mechanic1 = Mechanic.create!(name: "Rostam", years_experience: 2)
       @mechanic2 = Mechanic.create!(name: "Jolly", years_experience: 5)
