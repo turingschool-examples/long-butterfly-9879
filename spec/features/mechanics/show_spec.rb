@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe '/mechanics/id', type: :feature do
   before(:each) do 
-    @jack_mechanic = Mechanic.create!(name: "Jack Mechanic", years_experience: 12)
+    @jack_mechanic = Mechanic.create!(name: "Jack Frost", years_experience: 12)
 
     @six_flags = AmusementPark.create!(name: 'Six Flags', admission_cost: 75)
     @universal = AmusementPark.create!(name: 'Universal Studios', admission_cost: 80)
@@ -27,8 +27,28 @@ RSpec.describe '/mechanics/id', type: :feature do
       expect(page).to have_content("Currently Working On:")
       expect(page).to have_content("#{@ferris.name}")
       expect(page).to have_content("#{@water_world.name}")
-save_and_open_page
+
+      expect(page).to_not have_content("#{@scrambler.name}")
+    end
+
+    it "I see a form to add a ride to their workload" do 
+      visit "/mechanics/#{@jack_mechanic.id}"
+
+      expect(page).to have_content("Add a Ride to Workload")
+      expect(page).to have_field(:ride_id)
+      expect(page).to have_button("Submit")
+    end
+
+    it "I fill in that form with an id of an exsiting ride, click 'Submit', I return to page & see new ride name" do 
+      visit "/mechanics/#{@jack_mechanic.id}"
+
       expect(page).to_not have_content("#{@jaws.name}")
+
+      fill_in("Ride Id:", with: "#{@jaws.id}")
+      click_button("Submit")
+
+      expect(current_path).to eq("/mechanics/#{@jack_mechanic.id}")
+      expect(page).to have_content("#{@jaws.name}")
     end
   end
 end
