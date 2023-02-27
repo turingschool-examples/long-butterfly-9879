@@ -2,7 +2,18 @@
 <p>Years of Experience: <%= @mechanic.years_of_experience %></p>
 
 <div id='mechanic-rides'>
+	<h4>Current rides they're working on</h4>
 	<% @rides.each do |ride| %>
-		<%= ride.name %>
+		<p><%= ride.name %></p>
 	<% end %>
 <div>
+
+<div id='add-ride-form'>
+	<h4>Add a ride to workload:</h4>
+	<%= form_with url: ride_mechanics_path, local: true do |f| %>
+		<%= f.hidden_field :mechanic_id, value: @mechanic.id %>
+		<%= f.label :ride_id, "Ride Id:" %>
+		<%= f.number_field :ride_id %>
+		<%= f.submit 'Submit' %>
+	<% end %>
+</div/>
