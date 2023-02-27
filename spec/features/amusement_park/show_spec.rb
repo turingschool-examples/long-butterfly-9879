@@ -30,6 +30,13 @@ RSpec.describe "Show", type: :feature do
         expect(page).to have_content("#{@mechanic2.name}")
         expect(page).to have_no_content("#{@mechanic3.name}")
       end
+      #extension
+      it "Then I see a list of all of the park's rides, And next to the ride name I see the average experience of the mechanics working on the ride, And I see the list of rides is ordered by the average experience of mechanics working on the ride." do
+        expect(page).to have_content(@ride1.name)
+        expect(page).to have_content(@ride2.name)
+        expect(page).to have_content(@ride3.name)
+
+      end
     end
   end
 end
