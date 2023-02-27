@@ -24,7 +24,7 @@ RSpec.describe "AmusementParks#Show", type: :feature do
     context "As a visitor, I visit an amusement park's show page" do
       it "Then I see the name and price of admissions for that amusement park and I see the names 
         of all mechanics that are working on that park's rides, and I see that the list of mechanics is unique" do
-        save_and_open_page
+        
         within("#amusement_park_info") do
           expect(page).to have_content("Name: Six Flags")
           expect(page).to have_content("Admission Cost: $75.00")
