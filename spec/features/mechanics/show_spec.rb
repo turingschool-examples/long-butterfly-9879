@@ -27,7 +27,7 @@ RSpec.describe '/mechanics/id', type: :feature do
       expect(page).to have_content("Currently Working On:")
       expect(page).to have_content("#{@ferris.name}")
       expect(page).to have_content("#{@water_world.name}")
-
+save_and_open_page
       expect(page).to_not have_content("#{@jaws.name}")
     end
   end
