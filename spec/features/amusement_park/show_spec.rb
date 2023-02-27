@@ -5,9 +5,9 @@ RSpec.describe 'Amusement Parks Show Page', type: :feature do
 	let!(:disney_world) { AmusementPark.create!(name: 'Disney World', admission_cost: 200) }
 
 	let!(:mechanic_1) { Mechanic.create!(name: 'Mechanic 1.', years_of_experience: 6) }
-	let!(:mechanic_2) { Mechanic.create!(name: 'Mechanic 2.', years_of_experience: 6) }
-	let!(:mechanic_3) { Mechanic.create!(name: 'Mechanic 3.', years_of_experience: 6) }
-	let!(:mechanic_4) { Mechanic.create!(name: 'Mechanic 4.', years_of_experience: 6) }
+	let!(:mechanic_2) { Mechanic.create!(name: 'Mechanic 2.', years_of_experience: 2) }
+	let!(:mechanic_3) { Mechanic.create!(name: 'Mechanic 3.', years_of_experience: 4) }
+	let!(:mechanic_4) { Mechanic.create!(name: 'Mechanic 4.', years_of_experience: 2) }
 
 	let!(:ride_1) { six_flags.rides.create!(name: 'Tea Cups', thrill_rating: 2, open: true) }
 	let!(:ride_2) { six_flags.rides.create!(name: 'Merry Go Round', thrill_rating: 2, open: false) }
@@ -51,6 +51,20 @@ RSpec.describe 'Amusement Parks Show Page', type: :feature do
 			
 			within '#mechanics' do
 				expect(page).to have_content(mechanic_4.name, count: 1)
+			end
+		end
+
+		it 'has a list of rides with average experience of the mechanics working on the ride' do
+			visit amusement_park_path(six_flags)
+
+			within '#rides' do
+				expect(page).to have_content("#{ride_1.name} - Average Experience of Mechanics: 6.0")
+				expect(page).to have_content("#{ride_3.name} - Average Experience of Mechanics: 4.0")
+				expect(page).to have_content("#{ride_2.name} - Average Experience of Mechanics: 2.0")
+				expect(page).to have_content("#{ride_4.name} - Average Experience of Mechanics: 0.0")
+
+				expect(ride_1.name).to appear_before(ride_3.name)
+				expect(ride_3.name).to appear_before(ride_2.name)
 			end
 		end
 	end
