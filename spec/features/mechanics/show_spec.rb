@@ -41,11 +41,11 @@ RSpec.describe "Mechanics#Show", type: :feature do
       it "I see a form to add a ride to their workload when I fill in that field with an 
         id of an existing ride and click Submit I'm taken back to that mechanic's show page 
         and I see the name of that newly added ride on this mechanic's show page" do
-     
         fill_in :ride_id, with: @carousel.id
         click_button "Submit"
-
+        
         expect(current_path).to eq("/mechanics/#{@kara.id}")
+        save_and_open_page
         
         within("#mechanic_info") do
           expect(page).to have_content("Carousel")
