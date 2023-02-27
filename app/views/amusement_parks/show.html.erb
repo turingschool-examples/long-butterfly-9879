@@ -11,3 +11,14 @@
     </ul>
   <% end %>
 </div>
+
+<div class = "park_rides">
+  <%@amusement_park.order_rides_by_mechanic_experience.each do |ride| %>
+  <div id=<%= "ride_#{ride.id}"%>>
+    <ul>
+      <li><%= ride.name %></li>
+        <p>Mechanic Years of Experience: <%= number_with_precision(ride.avg_years_experience, precision: 2) %></p>
+    </ul>
+  </div>
+  <% end %>
+</div>
