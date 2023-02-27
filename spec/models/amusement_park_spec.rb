@@ -30,4 +30,10 @@ RSpec.describe AmusementPark, type: :model do
       expect(@amusement_park.mechanics_at_park).to eq([@mechanic_1, @mechanic_2])
     end
   end
+
+  describe '#order_rides_by_mechanic_experience' do 
+    it 'orders the rides by mechanic average experience' do 
+      expect(@amusement_park.order_rides_by_mechanic_experience).to eq([@ride_3, @ride_1, @ride_2])
+    end
+  end
 end
