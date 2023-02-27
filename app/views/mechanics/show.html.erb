@@ -11,9 +11,9 @@
 </div>
 
 <div id="mechanic_form">
-  <h3>Add a ride to this mechanic's schedule</h3>
+  <h3>Add a ride to <%= @mechanic.name %>'s schedule</h3>
   <%= form_with model: @ride, method: :patch, local: true do |form| %>
-    <%= form.label :ride_id %>
+    <%= form.label :ride_id, "Ride ID"%>
     <%= form.number_field :ride_id %>
     <%= form.submit "Submit" %>
   <% end %>
