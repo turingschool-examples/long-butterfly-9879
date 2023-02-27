@@ -3,12 +3,16 @@
 <h3>Mechanics working on <%= @amusement_park.name %>'s rides:</h3>
 <div id="mechanics">
 <% @mechanics.each do |mechanic| %>
+<ul>
   <li><%= mechanic.name %></li>
+</ul>
 <% end %>
 </div>
 <h3><%= @amusement_park.name %>'s Rides</h3>
 <div id="rides">
 <% @rides.each do |ride| %>
-  <p><%= ride.name %> - <%= ride.average.round(2) %> years experience(average)</p>
+<ul>
+  <li><%= ride.name %> - <%= ride.average.round(2) %> years experience(average)</li>
+  </ul>
 <% end %>
 </div>

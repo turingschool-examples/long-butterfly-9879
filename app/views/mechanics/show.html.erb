@@ -11,6 +11,6 @@
 <%= form_with url: ride_mechanics_path, method: :post, local: true do |f| %>
   <%= f.label :ride_id, "Ride Id:" %>
   <%= f.text_field :ride_id %>
-  <%= f.hidden_field :mechanic_id, value: @mechanic.id %>
+  <%= f.hidden_field :mechanic_id, value: @mechanic.id %><br>
   <%= f.submit "Submit" %>
 <% end %>
