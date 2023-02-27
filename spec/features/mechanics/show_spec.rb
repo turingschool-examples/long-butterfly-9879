@@ -16,7 +16,7 @@ RSpec.describe "Mechanics Show Page" do
     @mechanic_ride_2 = MechanicRide.create!(mechanic_id: @mechanic_1.id, ride_id: @ride_2.id)
 
     @mechanic_ride_3 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_1.id)
-    @mechanic_ride_3 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_3.id)
+    @mechanic_ride_4 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_3.id)
   end
   describe 'when visiting the mechanics show page' do 
     it 'has the mechanics name, years of experience and a list of rides they are working on' do 
