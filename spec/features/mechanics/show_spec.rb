@@ -23,9 +23,9 @@ RSpec.describe '/mechanics/:id', type: :feature do
     it "I see their name, years_experience, & names of all rides they're working on" do 
       visit "/mechanics/#{@jack_mechanic.id}"
 
-      expect(page).to have_content("#{@jack_mechanic.name}'s Page")
+      expect(page).to have_content("Mechanic: #{@jack_mechanic.name}")
       expect(page).to have_content("Years of Experience: #{@jack_mechanic.years_experience}")
-      expect(page).to have_content("Currently Working On:")
+      expect(page).to have_content("Current rides they’re working on:")
       expect(page).to have_content("#{@ferris.name}")
       expect(page).to have_content("#{@water_world.name}")
 
@@ -36,7 +36,7 @@ RSpec.describe '/mechanics/:id', type: :feature do
     it "I see a form to add a ride to their workload" do 
       visit "/mechanics/#{@jack_mechanic.id}"
 
-      expect(page).to have_content("Add a Ride to Workload:")
+      expect(page).to have_content("Add a ride to workload:")
       expect(page).to have_field(:ride_id)
       expect(page).to have_button("Submit")
     end
