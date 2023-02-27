@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe '/mechanics/id', type: :feature do
+RSpec.describe '/mechanics/:id', type: :feature do
   before(:each) do 
     @jack_mechanic = Mechanic.create!(name: "Jack Frost", years_experience: 12)
 
@@ -18,7 +18,8 @@ RSpec.describe '/mechanics/id', type: :feature do
     MechanicRide.create!(mechanic: @jack_mechanic, ride: @water_world)
   end 
 
-  describe "when I visit a mechanic show page" do
+  describe "As a user, when I visit a mechanic's show page" do
+    # User Story 1
     it "I see their name, years_experience, & names of all rides they're working on" do 
       visit "/mechanics/#{@jack_mechanic.id}"
 
@@ -31,6 +32,7 @@ RSpec.describe '/mechanics/id', type: :feature do
       expect(page).to_not have_content("#{@scrambler.name}")
     end
 
+    # User Story 2
     it "I see a form to add a ride to their workload" do 
       visit "/mechanics/#{@jack_mechanic.id}"
 
@@ -39,6 +41,7 @@ RSpec.describe '/mechanics/id', type: :feature do
       expect(page).to have_button("Submit")
     end
 
+    # User Story 2
     it "I fill in that form with an id of an exsiting ride, click 'Submit', I return to page & see new ride name" do 
       visit "/mechanics/#{@jack_mechanic.id}"
 
