@@ -5,3 +5,11 @@ Admission: $<%= @park.admission_cost %>
 <%@park_mechanics.each do |mech| %>
 <p><%= mech.name %></p>
 <% end %>
+ 
+ <h3>Rides in Park</h3>
+<% @park.rides.each do |ride|%>
+<div id='ride_info-<%=ride.id%>'>
+  <li><%= ride.name %>  // Mechanic's Average Experience: <%= ride.avg_exp %> years</li> 
+    <%end%>
+</ul>
+</div>
