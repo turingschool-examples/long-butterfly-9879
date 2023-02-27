@@ -17,15 +17,15 @@ RSpec.describe "AmusementParks#Show", type: :feature do
     MechanicRide.create!(mechanic_id: @kara.id, ride_id: @drop.id)
     MechanicRide.create!(mechanic_id: @amos.id, ride_id: @splash.id)
     
-    visit "/amusementparks/#{@flags.id}"
+    visit "/amusement_parks/#{@flags.id}"
   end
 
   describe "User Story 3" do
-    context "As a visitor, I visit an amusement park’s show page" do
+    context "As a visitor, I visit an amusement park's show page" do
       it "Then I see the name and price of admissions for that amusement park and I see the names 
         of all mechanics that are working on that park's rides, and I see that the list of mechanics is unique" do
-        
-        within("amusement_park_info") do
+        save_and_open_page
+        within("#amusement_park_info") do
           expect(page).to have_content("Name: Six Flags")
           expect(page).to have_content("Admission Cost: $75.00")
           expect(page).to_not have_content("Name: Disney World")

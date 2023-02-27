@@ -1,0 +1,14 @@
+<h1><%= @amusement_park.name %>'s Directory</h1>
+<div id="amusement_park_info">
+  <p>Name: <%= @amusement_park.name %></p>
+  <p>Admission Cost: <%= number_to_currency(@amusement_park.admission_cost) %></p>
+</div>
+
+<div id="mechanics">
+  <h3>Park Mechanics</h3>
+    <ul>
+      <% @park_mechanics.each do |mechanic| %>
+        <li>Name: <%= mechanic.name %></li>
+      <% end %>
+    </ul>
+</div>
