@@ -38,16 +38,17 @@ RSpec.describe "Amusement Park Show Page" do
     end
   end
 
-    # Extensions 
+    # Extension
     # Then I see a list of all of the park's rides,
     # And next to the ride name I see the average experience of the mechanics working on the ride,
     # And I see the list of rides is ordered by the average experience of mechanics working on the ride.
+
   describe "I see a list of all of the park's rides" do
     it "Next to the ride name I see the average experience of the mechanics working on the ride" do
       # 1 ride << many mechanics + average experience
-      expect(page).to have_content("Rides: The Hurler\nBatman")
+      expect(page).to have_content("Rides: The Hurler\nBatman - Avg Exp of Mechanics: ")
 
-      expect(page).to_not have_content("Rides: Goliath\nTwister")
+      expect(page).to_not have_content("Rides: Goliath\nTwister - Avg Exp of Mechanics: ")
     end
   end
 end
