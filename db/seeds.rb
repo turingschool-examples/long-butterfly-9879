@@ -18,6 +18,9 @@ Ride.destroy_all
 @jaws = @universal.rides.create!(name: 'Jaws', thrill_rating: 5, open: true)
 
 @jim = Mechanic.create!(name: "Jim", years_experience: 10)
+@bob = Mechanic.create!(name: "Bob", years_experience: 15)
+
 
 RideMechanic.create!(ride: @hurler, mechanic: @jim)
 RideMechanic.create!(ride: @ferris, mechanic: @jim)
+RideMechanic.create!(ride: @scrambler, mechanic: @bob)
