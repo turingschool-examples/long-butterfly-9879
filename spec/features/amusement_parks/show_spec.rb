@@ -51,7 +51,7 @@ RSpec.describe "Amusement Parks Show Page" do
           
 
           visit amusement_park_path(@six_flags)
-          save_and_open_page
+
           within("#rides") {
             expect("The Hurler - Average Years of Experience for Mechanics: 12.5").to appear_before("The Scrambler - Average Years of Experience for Mechanics: 9.0")
             expect("The Scrambler - Average Years of Experience for Mechanics: 9.0").to appear_before("Ferris Wheel - Average Years of Experience for Mechanics: 6.5")
