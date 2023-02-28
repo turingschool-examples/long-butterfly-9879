@@ -11,12 +11,13 @@ RSpec.describe 'show view' do
     @bob = Mechanic.create!(name: "Bob", years_experience: 7)
     MechanicRide.create!(ride: @coaster, mechanic: @steve)
     MechanicRide.create!(ride: @tower, mechanic: @steve)
-    MechanicRide.create!(ride: @twirler mechanic: @bob)
+    MechanicRide.create!(ride: @twirler, mechanic: @bob)
 
     visit "/amusement_parks/#{@amusement_park.id}"
   end
   
   it 'displays a mechanic with their attributes and the names of rides they work on' do
+    save_and_open_page
     expect(page).to have_content("Name: #{@amusement_park.name}")
     expect(page).to have_content("Admission cost: #{@amusement_park.admission_cost}")
     expect(page).to have_content("#{@steve.name}")
