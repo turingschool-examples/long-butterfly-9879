@@ -43,8 +43,10 @@ RSpec.describe "Mechanic#Show" do
     it "has a form where you add an existing ride to this mechanic" do
       within("#add_mechanic_ride") do
         expect(page).to have_field("Ride")
-        fill_in("Ride", with: @ride_2.id)
-        expect(current_path).to eq("/mechanic/#{@tech_1.id}")
+        fill_in("Ride", with: @ride_3.id)
+        click_button "Save"
+        expect(current_path).to eq("/mechanics/#{@tech_1.id}")
+        save_and_open_page
       end
 
       within("#mechanic_rides") do

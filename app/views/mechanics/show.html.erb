@@ -12,3 +12,12 @@
     <li><%= ride.name %></li>
   <% end %>
 </ol>
+
+<div id="add_mechanic_ride">
+  <h4>Add a ride to this mechanic by ID</h4>
+  <%= form_with url: "/mechanics/#{@mechanic.id}/mechanic_rides", method: :post, local: true do |f| %>
+    <%= f.label :ride_id %>
+    <%= f.text_field :ride_id %>
+    <%= f.submit %>
+  <% end %>
+</div>
