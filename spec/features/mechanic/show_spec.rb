@@ -29,7 +29,6 @@ RSpec.describe "Mechanic#Show" do
     end
   
     it "shows the names of all rides they are working on" do
-      save_and_open_page
       within("#mechanic_rides") do
         expect(page).to have_content(@ride_1.name)
         expect(page).to have_content(@ride_2.name)
