@@ -8,29 +8,17 @@ RSpec.describe 'show view' do
     @twirler = @amusement_park.rides.create!(name: "Twirly Thing", thrill_rating: 10, open: true)
     @coaster = @amusement_park.rides.create!(name: "Rollercoaster", thrill_rating: 1, open: true)
     @steve = Mechanic.create!(name: "Steve", years_experience: 7)
+    @bob = Mechanic.create!(name: "Bob", years_experience: 7)
     MechanicRide.create!(ride: @coaster, mechanic: @steve)
     MechanicRide.create!(ride: @tower, mechanic: @steve)
+    MechanicRide.create!(ride: @twirler mechanic: @bob)
 
-    visit "/mechanics/#{@steve.id}"
+    visit "/amusement_parks/#{@amusement_park.id}"
   end
   
   it 'displays a mechanic with their attributes and the names of rides they work on' do
-    expect(page).to have_content("Name: #{@steve.name}")
-    expect(page).to have_content("Years of experience: #{@steve.years_experience}")
-    expect(page).to have_content("Rides: #{@tower.name} #{@coaster.name}")
-  end
-
-  it 'has a form to add a ride to the mechanic' do
-    fill_in "Add ride", with: @spinner.id
-    click_button "Add"
-
-    expect(current_path).to eq("/mechanics/#{@steve.id}")
-    expect(page).to have_content("#{@spinner.name}")
-
-    fill_in "Add ride", with: @twirler.id
-    click_button "Add"
-
-    expect(current_path).to eq("/mechanics/#{@steve.id}")
-    expect(page).to have_content("#{@twirler.name}")
+    expect(page).to have_content("Name: #{@amusement_park.name}")
+    expect(page).to have_content("Admission cost: #{@amusement_park.admission_cost}")
+    expect(page).to have_content("#{@steve.name}")
   end
 end
