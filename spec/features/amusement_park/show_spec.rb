@@ -27,7 +27,7 @@ RSpec.describe "AmusementPark#Show" do
       within("#park_info") do
         expect(page).to have_content("Name: #{@amusement_park.name}")
         expect(page).to have_content("Cost of Admission: #{@amusement_park.admission_cost}")
-     end
+      end
     end
 
     it "shows a Unique list of Mechanics Names working park's rides" do
@@ -50,10 +50,10 @@ RSpec.describe "AmusementPark#Show" do
 
     it "shows the average experience of the rides techs" do
       within("#park_rides") do
-        expect(page).to have_content("#{@ride_1.name} - Avg Tech Experience: #{@tech_1.years_experience}")
-        expect(page).to have_content("#{@ride_2.name} - Avg Tech Experience: #{@tech_1.years_experience}")
-        expect(page).to have_content("#{@ride_3.name} - Avg Tech Experience: #{@tech_2.years_experience}")
-        # expect(page).to have_content("#{@ride_4.name} - Avg Tech Experience: #{@tech_2.years_experience}")
+        expect(page).to have_content("#{@ride_1.name} - Avg Tech Experience: 4")
+        expect(page).to have_content("#{@ride_2.name} - Avg Tech Experience: 4")
+        expect(page).to have_content("#{@ride_3.name} - Avg Tech Experience: 7")
+        expect(page).to have_content("#{@ride_4.name} - Avg Tech Experience: 5.5")
       end
     end
 
