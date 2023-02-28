@@ -11,6 +11,8 @@ RSpec.describe 'amusement parks show page' do
 
   let!(:mechanic1) {Mechanic.create!(name: "Kara Smith", years_experience: 11)}
   let!(:mechanic2) {Mechanic.create!(name: "Michael Scott", years_experience: 1)}
+  let!(:mechanic3) {Mechanic.create!(name: "Michael B. Jordan", years_experience: 2)}
+
 
 
   before do
@@ -18,10 +20,19 @@ RSpec.describe 'amusement parks show page' do
     MechanicRide.create!(ride: ride2, mechanic: mechanic1)
     MechanicRide.create!(ride: ride4, mechanic: mechanic2)
     MechanicRide.create!(ride: ride2, mechanic: mechanic2)
+    MechanicRide.create!(ride: ride3, mechanic: mechanic3)
+
   end
 
   describe 'as a visitor to the amusement parks show page' do
     it 'I see the name and price of admissions for that park, and see the names of all the mechanics that are working on that parks rides (unique list)' do
+      visit "/amusement_parks/#{amusement_park1.id}"
+
+      expect(page).to have_content("Name of Park: Six Flags")
+      expect(page).to have_content("Price of admissions: $75")
+      expect(page).to have_content("List of all mechanics:")
+      expect(page).to have_content([mechanic1.name, mechanic2.name])
+      expect(page).to_not have_content("Michael B. Jordan")
 
     end
   end
