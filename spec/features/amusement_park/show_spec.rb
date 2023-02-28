@@ -30,11 +30,30 @@ RSpec.describe "AmusementPark#Show" do
      end
     end
 
-    xit "shows a Unique list of Mechanics Names working park's rides" do
+    it "shows a Unique list of Mechanics Names working park's rides" do
       within("#park_techs") do
         expect(page).to have_content(@tech_1.name, count: 1)
         expect(page).to have_content(@tech_2.name, count: 1)
       end
+    end
+  end
+
+  describe "Extensions" do
+    it "shows a list of all the rides" do
+      within("#park_rides") do
+        expect(page).to have_content(@ride_1.name)
+        expect(page).to have_content(@ride_2.name)
+        expect(page).to have_content(@ride_3.name)
+        expect(page).to have_content(@ride_4.name)
+      end
+    end
+
+    it "shows the average experience of the rides techs" do
+      
+    end
+
+    it "orders the rides based on the average experience of the techs" do
+
     end
   end
 end
