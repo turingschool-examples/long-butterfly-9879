@@ -35,10 +35,18 @@ describe 'mechanics show page' do
       end
       fill_in 'id', with: @ride2.id
       click_on 'Submit'
+      expect(current_path).to eq(mechanic_path(@mechanic))
       within 'div#rides' do
         expect(page).to have_content('Mr. Freeze')
       end
-     
+    end
+
+    it 'flashes a message if input is invalid' do
+      fill_in 'id', with: 100000000
+      click_on 'Submit'
+      expect(current_path).to eq(mechanic_path(@mechanic))
+
+      expect(page).to have_content('Invalid id')
     end
 
   end

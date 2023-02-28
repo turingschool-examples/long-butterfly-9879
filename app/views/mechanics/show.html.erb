@@ -2,8 +2,20 @@
 <p>YOE: <%= @mechanic.years_experience %> </p>
 <div id="rides">
   <p>Rides:</p>
-  <%= @mechanic.rides.each do |ride| %>
+  <% @mechanic.rides.each do |ride| %>
     <p> <%= ride.name %> </p>
   <% end %>
 </div>
 
+<% flash.each do |type, msg| %>
+      <div>
+        <%= msg %>
+      </div>
+    <% end %>
+
+<%= form_with url: ride_mechanics_path, local: true do |form| %>
+  <%= form.hidden_field :mechanic_id, value: @mechanic.id  %>
+  <%= form.label :id %> 
+  <%= form.number_field :id %>
+  <%= form.submit value: 'Submit' %>
+<% end %>
