@@ -22,12 +22,14 @@ RSpec.describe "Mechanic Show Page" do
       expect(page).to have_content("Name: Kara Smith")
       expect(page).to have_content("Experience: 11")
       expect(page).to have_content("Rides: The Hurler")
+
+      expect(page).to_not have_content("Name: Jen Sajevic")
+      expect(page).to_not have_content("Experience: 8")
+      expect(page).to_not have_content("Rides: Goliath")
     end
   end
 
-    # Story 2 
-    # I’m taken back to that mechanic's show page
-    # And I see the name of that newly added ride on this mechanic's show page
+  # Story 2 
   describe "When I visit /mechanics/:id" do
     it "I see their name, years of experience, and the names of all rides they are working on" do
       fill_in :ride_id, with: hurler.id
