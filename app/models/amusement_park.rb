@@ -1,8 +1,9 @@
 class AmusementPark < ApplicationRecord
   has_many :rides
+  has_many :mechanic_rides, through: :rides
+  has_many :mechanics, through: :mechanic_rides
 
   def list_of_mechanics
-    Mechanic.joins(:mechanic_rides).distinct.pluck(:name)
-    binding.pry
+    mechanics.distinct.pluck(:name)
   end
 end
