@@ -5,6 +5,7 @@ RSpec.describe 'mechanics show page' do
   let!(:ride1) {Ride.create!(name: "The Hurler", thrill_rating: 7, open: false, amusement_park_id: amusement_park1.id )}
   let!(:ride2) {Ride.create!(name: "Tiny Teacups", thrill_rating: 5, open: false, amusement_park_id: amusement_park1.id )}
   let!(:ride3) {Ride.create!(name: "Big Slide", thrill_rating: 7, open: false, amusement_park_id: amusement_park1.id )}
+  let!(:ride4) {Ride.create!(name: "Danger Drop", thrill_rating: 9, open: false, amusement_park_id: amusement_park1.id )}
 
   let!(:mechanic1) {Mechanic.create!(name: "Kara Smith", years_experience: 11)}
   let!(:mechanic2) {Mechanic.create!(name: "Michael Scott", years_experience: 1)}
@@ -30,6 +31,25 @@ RSpec.describe 'mechanics show page' do
       expect(page).to_not have_content("Michael Scott")
       expect(page).to_not have_content("Big Slide")
 
+    end
+    it 'shows a form to add a ride to their workload' do
+      visit "/mechanics/#{mechanic1.id}"
+
+      expect(page).to have_field(:ride_id)
+      expect(page).to have_button("Submit")
+      expect(page).to have_content("Add a ride to workload")
+
+    end
+
+    it 'when I fill in field with id of a ride and click submit, I am taken back to the mechanics show page and see the name of that newly added ride' do
+      visit "/mechanics/#{mechanic1.id}"
+
+      fill_in :ride_id, with: "#{ride4.id}"
+      click_on "Submit"
+      save_and_open_page
+
+      expect(current_path).to eq("/mechanics/#{mechanic1.id}")
+      expect(page).to have_content("Danger Drop")
     end
   end
 end
