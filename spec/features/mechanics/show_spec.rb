@@ -10,7 +10,7 @@ RSpec.describe "Mechantic show page" do
     @mechanic_1 = Mechanic.create!(name: "Guy the mechanic", years_experience: 22)
     @mechanic_2 = Mechanic.create!(name: "Girl the mechanic", years_experience: 33)
     @mechanic_ride_1 = MechanicRide.create!(mechanic_id: @mechanic_1.id, ride_id: @ride_1.id)
-    @mechanic_ride_2 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_2.id)
+    @mechanic_ride_2 = MechanicRide.create!(mechanic_id: @mechanic_1.id, ride_id: @ride_2.id)
     @mechanic_ride_3 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_3.id)
     @mechanic_ride_4 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_4.id)
   end
@@ -19,14 +19,17 @@ RSpec.describe "Mechantic show page" do
     describe "When I visit a mechantic show page" do
       it "I see their name, years of experience, and the names of all rides they are working on" do
         visit mechanic_path(@mechanic_1)
+        save_and_open_page
 
         expect(page).to have_content(@mechanic_1.name)
         expect(page).to_not have_content(@mechanic_2.name)
 
         within "#mechanic_details" do
-          expect(page).to have_content("Experience: #{@mechanic_1.years_experience}")
-          expect(page).to have_content("ride_1 ride_2")
-          expect(page).to_not have_content("ride_3 ride_4")
+          expect(page).to have_content("Experience: #{@mechanic_1.years_experience} Years")
+          expect(page).to have_content("ride_1")
+          expect(page).to have_content("ride_2")
+          expect(page).to_not have_content("ride_3")
+          expect(page).to_not have_content("ride_4")
         end
       end
     end
