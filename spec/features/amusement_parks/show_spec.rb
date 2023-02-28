@@ -11,6 +11,7 @@ describe 'amusement park show page' do
     RideMechanic.create!(mechanic_id: @mechanic1.id, ride_id: @ride1.id)
     RideMechanic.create!(mechanic_id: @mechanic1.id, ride_id: @ride2.id)
     RideMechanic.create!(mechanic_id: @mechanic2.id, ride_id: @ride2.id)
+    visit amusement_park_path(@amusement_park)
   end
   describe 'amusement park details' do
     it 'has its name' do
