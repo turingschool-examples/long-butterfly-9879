@@ -36,6 +36,5 @@ RSpec.describe 'Mechanic Show Page' do
       expect(current_path).to eq "/mechanics/#{@mechanic.id}"
       expect(page).to have_content "Bumper Cars of Doom"
     end
-
   end
 end
