@@ -39,10 +39,10 @@ ActiveRecord::Schema.define(version: 2023_02_28_202443) do
   end
 
   create_table "rides", force: :cascade do |t|
-    t.bigint "amusement_park_id"
     t.string "name"
     t.integer "thrill_rating"
     t.boolean "open"
+    t.bigint "amusement_park_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["amusement_park_id"], name: "index_rides_on_amusement_park_id"
