@@ -86,7 +86,7 @@ Current rides they’re working on:
   Fahrenheit
   The Kiss Raise
 
-Add a ride to workload:
+ 
 Ride Id: |_pretend_this_is_a_textfield_|
 Submit
 ```
