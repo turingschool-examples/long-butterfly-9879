@@ -49,7 +49,12 @@ RSpec.describe "AmusementPark#Show" do
     end
 
     it "shows the average experience of the rides techs" do
-      
+      within("#park_rides") do
+        expect(page).to have_content("#{@ride_1.name} - Avg Tech Experience: #{@tech_1.years_experience}")
+        expect(page).to have_content("#{@ride_2.name} - Avg Tech Experience: #{@tech_1.years_experience}")
+        expect(page).to have_content("#{@ride_3.name} - Avg Tech Experience: #{@tech_2.years_experience}")
+        # expect(page).to have_content("#{@ride_4.name} - Avg Tech Experience: #{@tech_2.years_experience}")
+      end
     end
 
     it "orders the rides based on the average experience of the techs" do

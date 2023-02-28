@@ -17,6 +17,7 @@
 <h4>Park Rides</h4>
 <ul>
   <% @rides.each do |ride| %>
-    <li><%= ride.name %></li>
+  <% require 'pry'; binding.pry %>
+    <li><%= "#{ride.name} - Avg Tech Experience: " %></li>
   <% end %>
 </ul>
