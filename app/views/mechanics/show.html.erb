@@ -1,6 +1,9 @@
 <p>Name: <%= @mechanic.name %> </p>
 <p>YOE: <%= @mechanic.years_experience %> </p>
-<p>Rides:</p>
-<%= @mechanic.rides.each do |ride| %>
-  <p> <%= ride.name %> </p>
-<% end %>
+<div id="rides">
+  <p>Rides:</p>
+  <%= @mechanic.rides.each do |ride| %>
+    <p> <%= ride.name %> </p>
+  <% end %>
+</div>
+
