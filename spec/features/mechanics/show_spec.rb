@@ -54,7 +54,7 @@ RSpec.describe 'mechanic/show', type: :feature do
         
           # require 'pry'; binding.pry
           click_on 'Submit'
-          expect(current_path).to be("/mechanics/#{steve.id}")
+          expect(current_path).to eq("/mechanics/#{steve.id}")
           expect(page).to have_content("The Whopper(sponsored by BK)")
         end
       end
