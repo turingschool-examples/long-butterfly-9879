@@ -30,10 +30,9 @@ RSpec.describe 'amusement parks show page' do
       expect(page).to have_content("Price of admissions: $75")
       expect(page).to have_content("List of all mechanics:")
       expect(page).to have_content("Kara Smith").once
-      expect(page).to have_content("Michael Scott", count: 1)
+      expect(page).to have_content("Michael Scott").once
 
       expect(page).to_not have_content("Michael B. Jordan")
-
     end
   end
 end
