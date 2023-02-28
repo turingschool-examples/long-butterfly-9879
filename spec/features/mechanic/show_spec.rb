@@ -15,9 +15,11 @@ RSpec.describe 'show view' do
   end
   
   it 'displays a mechanic with their attributes and the names of rides they work on' do
-    expect(page).to have_content("Name: #{@steve.name}")
-    expect(page).to have_content("Years of experience: #{@steve.years_experience}")
-    expect(page).to have_content("Rides: #{@tower.name} #{@coaster.name}")
+    within "div#show_#{@steve.id}" do
+      expect(page).to have_content("Name: #{@steve.name}")
+      expect(page).to have_content("Years of experience: #{@steve.years_experience}")
+      expect(page).to have_content("Rides: #{@tower.name} #{@coaster.name}")
+    end
   end
 
   it 'has a form to add a ride to the mechanic' do

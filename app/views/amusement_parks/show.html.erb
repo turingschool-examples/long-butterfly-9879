@@ -1,8 +1,10 @@
-<p>Name: </p><%= @amusement_park.name %></p>
-<p>Admission cost: <%= @amusement_park.admission_cost%></p>
+<div id="park_show">
+  <p>Name: <%= @amusement_park.name %></p>
+  <p>Admission cost: <%= @amusement_park.admission_cost%></p>
 
-
-<% @mechanics.each do |mechanic| %>
-  <%= mechanic.name %>
-<% end %>
+  Mechanics who work here:
+  <% @mechanics.each do |mechanic| %>
+    <%= mechanic.name %>
+  <% end %>
+  </div>
 
