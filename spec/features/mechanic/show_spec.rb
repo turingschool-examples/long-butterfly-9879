@@ -20,16 +20,26 @@ RSpec.describe 'When I visit a mechanic show page', type: :feature do
 	
 	scenario 'I see their name, years of experience, and the names of all rides they are working on' do
 		visit "/mechanics/#{@mechanic.id}"
+		save_and_open_page
 		expect(page).to have_content("Name: #{@mechanic.name}")
 		expect(page).to have_content("Years of Experience: #{@mechanic.years_experience}")
-		expect(page).to have_content("Current rides: #{@mechanic.rides.name}")
-		expect(page).to_not have_content("The Boss")
+
+		within "#rides" do
+			expect(page).to have_content("The Frog Hopper")
+			expect(page).to have_content("Fahrenheit")
+			expect(page).to have_content("Teacups")
+			expect(page).to_not have_content("The Boss")
+		end
 		
 		visit "/mechanics/#{@mechanic2.id}"
 		expect(page).to have_content("Name: #{@mechanic2.name}")
 		expect(page).to have_content("Years of Experience: #{@mechanic2.years_experience}")
-		expect(page).to have_content("Current rides: #{@mechanic2.rides.name}")
-		expect(page).to_not have_content("The Frog Hopper")
+		
+		within "#rides" do
+			expect(page).to have_content("Swings")
+			expect(page).to have_content("The Boss")
+			expect(page).to_not have_content("The Frog Hopper")
+		end
 	end
 end
 		
