@@ -28,11 +28,11 @@ RSpec.describe 'show view' do
 
     expect(current_path).to eq("/mechanics/#{@steve.id}")
     expect(page).to have_content("#{@spinner.name}")
+    expect(page).to_not have_content("#{@twirler.name}")
 
     fill_in "Add ride", with: @twirler.id
     click_button "Add"
 
-    expect(current_path).to eq("/mechanics/#{@steve.id}")
     expect(page).to have_content("#{@twirler.name}")
   end
 end
