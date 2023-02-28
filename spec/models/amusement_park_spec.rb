@@ -26,10 +26,10 @@ RSpec.describe AmusementPark, type: :model do
     it { should have_many(:rides) }
   end
 
-  # describe 'Instance Methods' do
-  #   it "returns all distinct mechanics for an amusement park" do
-  #     expect(sixflags.all_distinct_mechanics).to eq([fred.name, marilyn.name, roger.name])
-  #     expect(sixflags.all_distinct_mechanics).to_not include(jeffrey.name)
-  #   end
-  # end
+  describe 'Instance Methods' do
+    it "returns all distinct mechanics for an amusement park" do
+      expect(sixflags.all_distinct_mechanics).to eq([fred.name, marilyn.name, roger.name])
+      expect(sixflags.all_distinct_mechanics).to_not include(jeffrey.name)
+    end
+  end
 end
