@@ -1,8 +1,17 @@
 <h1>Mechanic Name: <%=@mechanic.name%></h1>
 <p>Years of Experience: <%=@mechanic.years_experience%></p>
 <div id="rides">
+<h3>Current Rides on Mechanic's Workload:</h2>
 <% @mechanic.rides.each do |ride|%>
 <p><%=ride.name%></p>
+<%end%>
+</div>
+
+<div id="add_ride">
+<h3>Add Ride to Mechanic's Workload:</h3>
+<%= form_with model: @mechanic, local: true  do |f|%>
+<p>Add Ride: <%=f.text_field :ride_id%></p>
+<p><%= f.submit 'Add Ride'%>
 <%end%>
 </div>
 
