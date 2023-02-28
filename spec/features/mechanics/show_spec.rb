@@ -30,7 +30,8 @@ describe 'mechanic show page' do
       expect(page).to_not have_content("Years of Experience: 8")
       expect(page).to have_content("Current Rides: The Hurler")
       expect(page).to_not have_content("Current Rides: Zipper")
-    end
+      end
+    end  
   end
 
   describe 'user story 2' do
