@@ -7,7 +7,6 @@ class MechanicsRideController < ApplicationController
 			flash[:success] = "Ride added"
 			redirect_to "/mechanics/#{@mechanic.id}"
 		else
-			flash[:error] = "Ride not added"
 			redirect_to "/mechanics/#{@mechanic.id}"
 		end
 	end

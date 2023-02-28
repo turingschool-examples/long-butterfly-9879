@@ -55,6 +55,8 @@ RSpec.describe 'When I visit a mechanic show page', type: :feature do
 		click_button "Submit"
 
 		expect(current_path).to eq("/mechanics/#{@mechanic.id}")
+		expect(page).to have_content("Ride added")
+
 		within "#rides" do
 			expect(page).to have_content("Swings")
 		end

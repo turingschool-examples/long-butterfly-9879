@@ -1,0 +1,10 @@
+<h1> Name: <%= @park.name %></h1>
+
+<h3> Admission: <%=number_to_currency(@park.admission_cost) %> </h3>
+
+<h3> Park Mechanics </h3>
+<ul id="mechanics"> 
+<% @distinct.each do |mechanic| %>
+<li> <%= mechanic.name %> </li>
+<% end %>
+</ul>

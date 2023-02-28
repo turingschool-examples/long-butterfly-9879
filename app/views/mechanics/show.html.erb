@@ -2,7 +2,7 @@
 
 <p> Years of Experience: <%= @mechanic.years_experience %></p>
 <br>
-<h3> Rides working on: </h3>
+<h3> Current rides working on: </h3>
 <ul id="rides">
 <% @mechanic.rides.each do |ride| %>
 <li> <%= ride.name %> </li>
