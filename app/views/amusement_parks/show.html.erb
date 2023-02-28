@@ -8,3 +8,7 @@
    <%= mechanic.name %></p>
   <% end %></p>
 <% end %></p>
+
+<p>Rides: <% @amusement_park.rides.each do |ride| %>
+  <%= ride.name %></p>
+<% end %>

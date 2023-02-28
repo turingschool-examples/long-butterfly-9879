@@ -18,6 +18,8 @@ RSpec.describe "Amusement Park Show Page" do
     MechanicRide.create!(ride: goliath, mechanic: jen)
     MechanicRide.create!(ride: batman, mechanic: ben)
     MechanicRide.create!(ride: twister, mechanic: matt)
+    MechanicRide.create!(ride: hurler, mechanic: ben)
+    MechanicRide.create!(ride: goliath, mechanic: matt)
 
     visit "/amusement_park/#{six_flags.id}"
   end
@@ -33,6 +35,19 @@ RSpec.describe "Amusement Park Show Page" do
       expect(page).to_not have_content("Price: 65")
       expect(page).to_not have_content("Mechanics: Jen Sajevic\nMatt Stillman")
       # save_and_open_page
+    end
+  end
+
+    # Extensions 
+    # Then I see a list of all of the park's rides,
+    # And next to the ride name I see the average experience of the mechanics working on the ride,
+    # And I see the list of rides is ordered by the average experience of mechanics working on the ride.
+  describe "I see a list of all of the park's rides" do
+    it "Next to the ride name I see the average experience of the mechanics working on the ride" do
+      # 1 ride << many mechanics + average experience
+      expect(page).to have_content("Rides: The Hurler\nBatman")
+
+      expect(page).to_not have_content("Rides: Goliath\nTwister")
     end
   end
 end
