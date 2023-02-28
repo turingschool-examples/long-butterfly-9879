@@ -35,6 +35,7 @@ RSpec.describe "Mechanics Show Page", type: :feature do
       expect(page).to have_content('Add a ride for this mechanic:')
       expect(page).to have_field(:ride_id)
       expect(page).to have_button('Submit')
+      # save_and_open_page
 
       fill_in :ride_id, with: merrygoround.id
       click_button "Submit"

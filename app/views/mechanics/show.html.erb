@@ -9,3 +9,11 @@
     <ul><%=ride.name%></ul>
   <%end%>
 </div>
+
+<h3>Add a ride for this mechanic:</h3>
+<%= form_with url: "/mechanics/#{@mechanic.id}/rides" do |form| %>
+  <%= form.label "ID: " %>
+  <%= form.number_field :ride_id %>
+
+  <%= form.submit "Submit"%>
+<% end %>
