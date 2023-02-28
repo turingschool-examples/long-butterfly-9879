@@ -18,19 +18,38 @@ RSpec.describe "Mechanic#Show" do
     visit "/mechanics/#{@tech_1.id}"
   end
 
-  it "shows a mechanics name, years of experience" do
-    within("#mechanic_info") do
-      expect(page).to have_content("Name: #{@tech_1.name}")
-      expect(page).to have_content("Years of Experience: #{@tech_1.years_experience}")
-      expect(page).to_not have_content(@tech_2.name)
+  # User Story 1
+  describe "User Story 1" do
+    it "shows a mechanics name, years of experience" do
+      within("#mechanic_info") do
+        expect(page).to have_content("Name: #{@tech_1.name}")
+        expect(page).to have_content("Years of Experience: #{@tech_1.years_experience}")
+        expect(page).to_not have_content(@tech_2.name)
+      end
+    end
+  
+    it "shows the names of all rides they are working on" do
+      save_and_open_page
+      within("#mechanic_rides") do
+        expect(page).to have_content(@ride_1.name)
+        expect(page).to have_content(@ride_2.name)
+        expect(page).to_not have_content(@ride_3.name)
+        expect(page).to_not have_content(@ride_4.name)
+      end
     end
   end
 
-  it "shows the names of all rides they are working on" do
-    save_and_open_page
-    within("#mechanic_rides") do
-      expect(page).to have_content(@ride_1.name)
-      expect(page).to have_content(@ride_2.name)
+  describe "User Story 2" do
+    it "has a form where you add an existing ride to this mechanic" do
+      within("#add_mechanic_ride") do
+        expect(page).to have_field("Ride")
+        fill_in("Ride", with: @ride_2.id)
+        expect(current_path).to eq("/mechanic/#{@tech_1.id}")
+      end
+
+      within("#mechanic_rides") do
+        expect(page).to have_content(@ride_3.name)
+      end
     end
   end
 end
