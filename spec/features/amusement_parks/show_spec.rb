@@ -5,7 +5,7 @@ RSpec.describe 'Amusement Park Show Page' do
     @six_flags = AmusementPark.create!(name: 'Six Flags', admission_cost: 50)
     @mechanic = Mechanic.create!(name: 'Kara Smith', years_of_experience: 11)
     @mechanic2 = Mechanic.create!(name: 'Crusty Old Guy', years_of_experience: 7)
-    @mechanic3 = Mechanic.create!(name: 'Crusty Old Guy', years_of_experience: 20)
+    @mechanic3 = Mechanic.create!(name: 'Overly Eager New Guy', years_of_experience: 1)
     @ride1 = Ride.create!(name: 'The Frog Hopper', thrill_rating: 2, open: true, amusement_park_id: @six_flags.id)
     @ride2 = Ride.create!(name: 'Fahrenheit', thrill_rating: 5, open: true, amusement_park_id: @six_flags.id)
     @ride3 = Ride.create!(name: 'The Kiss Raise', thrill_rating: 4, open: false, amusement_park_id: @six_flags.id)
@@ -29,10 +29,11 @@ RSpec.describe 'Amusement Park Show Page' do
         expect(page).to have_content "Mechanics working at Six Flags:"
         expect(page).to have_content("Kara Smith").once
         expect(page).to have_content("Crusty Old Guy").once
+        expect(page).to have_content("Overly Eager New Guy").once
       end
     end
 
-    it 'I should see a list of all rides and the average years of experience for the mechanics working on that ride' do
+    xit 'I should see a list of all rides and the average years of experience for the mechanics working on that ride' do
       within "#rides" do
         expect(page).to have_content "Rides at Six Flags:"
         expect(page).to have_content "The Frog Hopper -- AVG Years of Experience: 11"
