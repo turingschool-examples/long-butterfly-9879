@@ -46,7 +46,6 @@ RSpec.describe "Mechanic#Show" do
         fill_in("Ride", with: @ride_3.id)
         click_button "Save"
         expect(current_path).to eq("/mechanics/#{@tech_1.id}")
-        save_and_open_page
       end
 
       within("#mechanic_rides") do
