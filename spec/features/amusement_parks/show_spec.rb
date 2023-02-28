@@ -37,6 +37,7 @@ RSpec.describe "Amusement Park Show Page", type: :feature do
       expect(page).to have_content("Price of Admissions: $50.00")
 
       within "#mechanics" do
+        expect(page).to have_content("Mechanics Currently Working on Rides:")
         expect(page).to have_css("Fred", count: 1)
         expect(page).to have_css('Marilyn', count: 1)
         expect(page).to have_css('Roger', count: 1)
