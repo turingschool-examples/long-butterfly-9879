@@ -51,5 +51,15 @@ RSpec.describe "Mechanic#Show" do
         expect(page).to have_content(@ride_3.name)
       end
     end
+
+    xit "will show an error message if the entry isn't valid" do
+      within("#add_mechanic_ride") do
+        expect(page).to have_field("Ride")
+        save_and_open_page
+        fill_in("Ride", with: 666)
+        click_button "Save"
+      end
+      expect(page).to have_content('Please provide a valid Ride ID.')
+    end
   end
 end
