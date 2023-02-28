@@ -74,7 +74,6 @@ describe 'As a user' do
           end
 
           expect(@r4.mechanics).to eq([])
-
         end
       end
     end
