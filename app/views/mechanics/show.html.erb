@@ -1,5 +1,15 @@
+<h1>Mechanic Show Page</h1>
+
 <p>Name: <%= @mechanic.name %></p>
 <p>Experience: <%= @mechanic.years_experience %></p>
 <p><% @rides.each do |ride| %></p>
   <p>Rides: <%= ride.name %></p>
 <p><% end %></p>
+
+<h3>Ride Form:</h3>
+
+<%= form_with url: "/mechanics/#{@mechanic.id}/guest_rooms", method: :post, local: true do |f| %>
+  <%= f.label "Ride ID: " %>
+  <%= f.number_field :ride_id %>
+  <%= f.submit "Submit" %>
+<% end %>

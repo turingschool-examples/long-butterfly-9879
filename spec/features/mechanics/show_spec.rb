@@ -24,4 +24,18 @@ RSpec.describe "Mechanic Show Page" do
       expect(page).to have_content("Rides: The Hurler")
     end
   end
+
+    # Story 2 
+    # I’m taken back to that mechanic's show page
+    # And I see the name of that newly added ride on this mechanic's show page
+  describe "When I visit /mechanics/:id" do
+    it "I see their name, years of experience, and the names of all rides they are working on" do
+      fill_in :ride_id, with: hurler.id
+      click_on "Submit"
+      
+      expect(current_path).to have_content("/mechanics/#{kara.id}")
+      expect(page).to have_field(:ride_id)
+      expect(page).to have_button("Submit")
+    end
+  end
 end
