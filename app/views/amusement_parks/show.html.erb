@@ -5,9 +5,18 @@
 
 <h3>Mechanics working on rides:</h3>
 <div id="unique_mechanics">
-  <% @amusement_park.unique_mechanics.each do |mechanic| %>
-    <ul>
+  <ul>
+    <% @amusement_park.unique_mechanics.each do |mechanic| %>
       <li><%= mechanic.name %></li>
-    </ul>
-  <% end %>
+    <% end %>
+  </ul>
+</div>
+
+<h3>Average Age of Mechanics Working on Rides</h3>
+<div id="rides">
+  <ol>
+    <% @amusement_park.mechanics_average_experience_by_ride.each do |ride| %>
+      <li><%= "#{ride.name} - Average Years of Experience for Mechanics: #{ride.average_experience}" %></li>
+    <% end %>
+  </ol>
 </div>
