@@ -31,8 +31,10 @@ RSpec.describe "AmusementPark#Show" do
     end
 
     xit "shows a Unique list of Mechanics Names working park's rides" do
-      expect(page).to have_content(@tech_1.name, count: 1)
-      expect(page).to have_content(@tech_2.name, count: 1)
+      within("#park_techs") do
+        expect(page).to have_content(@tech_1.name, count: 1)
+        expect(page).to have_content(@tech_2.name, count: 1)
+      end
     end
   end
 end
