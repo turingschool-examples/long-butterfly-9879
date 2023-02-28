@@ -20,11 +20,11 @@ RSpec.describe "Mechanics Show Page", type: :feature do
     end
     it 'I see Mechanic info' do
       expect(current_path).to eq("/mechanics/#{fred.id}")
-      expect(page).to have_content('Name: Fred')
-      expect(page).to have_content('Years Experience: 4')
+      expect(page).to have_content('Mechanic: Fred')
+      expect(page).to have_content('Years of Experience: 4')
 
       within "#rides" do
-        expect(page).to have_content('Rides Working On:')
+        expect(page).to have_content("Current rides they're working on:")
         expect(page).to have_content('Death Coaster')
         expect(page).to have_content('Free Faller')
         expect(page).to have_content('Teacups')
@@ -35,13 +35,12 @@ RSpec.describe "Mechanics Show Page", type: :feature do
       expect(page).to have_content('Add a ride for this mechanic:')
       expect(page).to have_field(:ride_id)
       expect(page).to have_button('Submit')
-      # save_and_open_page
-
+      
       fill_in :ride_id, with: merrygoround.id
       click_button "Submit"
-
+      
       expect(current_path).to eq("/mechanics/#{fred.id}")
-
+      
       within "#rides" do
         expect(page).to have_content("Merry Go Round")
       end

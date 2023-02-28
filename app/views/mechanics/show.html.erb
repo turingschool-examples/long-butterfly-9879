@@ -1,10 +1,10 @@
 <h1><%=@mechanic.name%>'s Info</h1>
 
-<p>Name: <%=@mechanic.name%></p>
-<p>Years Experience: <%=@mechanic.years_experience%></p>
+<p>Mechanic: <%=@mechanic.name%></p>
+<p>Years of Experience: <%=@mechanic.years_experience%></p>
 
 <div id="rides">
-<p>Rides Working On:</p>
+<p>Current rides they're working on:</p>
   <%@rides.each do |ride|%>
     <ul><%=ride.name%></ul>
   <%end%>
@@ -13,7 +13,7 @@
 
 <h3>Add a ride for this mechanic:</h3>
 <%= form_with url: "/mechanics/#{@mechanic.id}/rides" do |form| %>
-  <%= form.label "ID: " %>
+  <%= form.label "Ride Id: " %>
   <%= form.number_field :ride_id %>
 
   <%= form.submit "Submit"%>
