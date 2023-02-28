@@ -35,6 +35,7 @@ RSpec.describe "Amusement Park Show Page", type: :feature do
     it 'I see Amusement Park info' do
       expect(page).to have_content("Amusement Park: Six Flags")
       expect(page).to have_content("Price of Admissions: $50.00")
+      # save_and_open_page
 
       within "#mechanics" do
         expect(page).to have_content("Mechanics Currently Working on Rides:")
