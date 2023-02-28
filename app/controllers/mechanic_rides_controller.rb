@@ -2,7 +2,7 @@ class MechanicRidesController < ApplicationController
 
   def create
     # require 'pry'; binding.pry
-    MechanicRide.create!(mechanic_id: params[:id], ride_id: params[:ride])
+    MechanicRide.create!(mechanic_rides_params)
  
 
     redirect_to "/mechanics/#{params[:mechanic_id]}"
