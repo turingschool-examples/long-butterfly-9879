@@ -10,7 +10,7 @@ RSpec.describe "Mechanics Show Page", type: :feature do
   let!(:teacups) { sixflags.rides.create!(name: "Teacups", thrill_rating: 2, open: false) }
   let!(:merrygoround) { sixflags.rides.create!(name: "Merry Go Round", thrill_rating: 1, open: false) }
 
-  describe 'As a user, when I visit a mechanic show page' do
+  describe 'As a Visitor, when I visit a mechanic show page' do
     before do
       RideMechanic.create!(ride: deathcoaster, mechanic: fred)
       RideMechanic.create!(ride: freefaller, mechanic: fred)
