@@ -20,7 +20,6 @@ RSpec.describe 'When I visit a mechanic show page', type: :feature do
 	
 	scenario 'I see their name, years of experience, and the names of all rides they are working on' do
 		visit "/mechanics/#{@mechanic.id}"
-		save_and_open_page
 		expect(page).to have_content("Name: #{@mechanic.name}")
 		expect(page).to have_content("Years of Experience: #{@mechanic.years_experience}")
 
@@ -39,6 +38,25 @@ RSpec.describe 'When I visit a mechanic show page', type: :feature do
 			expect(page).to have_content("Swings")
 			expect(page).to have_content("The Boss")
 			expect(page).to_not have_content("The Frog Hopper")
+		end
+	end
+
+	scenario 'I see a form to add a ride to their workload' do
+		visit "/mechanics/#{@mechanic.id}"
+		expect(page).to have_field(:ride_id)
+		expect(page).to have_button("Submit")
+	end
+
+	scenario 'I fill in that field with an id of an existing ride and click Submit I am taken back to that mechanics show page' do
+		visit "/mechanics/#{@mechanic.id}"
+		expect(page).to_not have_content("Swings")
+
+		fill_in 'ride_id', with: "#{@swings.id}"
+		click_button "Submit"
+
+		expect(current_path).to eq("/mechanics/#{@mechanic.id}")
+		within "#rides" do
+			expect(page).to have_content("Swings")
 		end
 	end
 end

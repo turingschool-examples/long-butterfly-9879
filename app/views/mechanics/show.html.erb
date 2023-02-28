@@ -8,3 +8,11 @@
 <li> <%= ride.name %> </li>
 <% end %>
 </ul>
+
+<div id="add_rides">
+	<%= form_with url: "/mechanics/#{@mechanic.id}/rides", method: :post, local: true do |f| %>
+		<%= f.label :add, "Add a ride to their workload" %>
+		<%= f.text_field :ride_id, required: true %>
+		<%= f.submit "Submit" %>
+	<% end %>
+</div>
