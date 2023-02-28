@@ -12,3 +12,11 @@
     </p>
   </ul>
 </div>
+
+<div id="add_ride">
+  <%= form_with url: mechanic_rides_path(@mechanic), method: :post, local: true do |form| %>
+    <%= form.label :ride_id %>
+    <%= form.text_field :ride_id %>
+    <%= form.submit "Submit" %>
+  <% end %>
+</div>
