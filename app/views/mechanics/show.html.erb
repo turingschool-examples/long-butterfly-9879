@@ -3,3 +3,12 @@
 <div id="mechanic_info">
   <p>Name: <%= @mechanic.name %></p>
   <p>Years of Experience: <%= @mechanic.years_experience %></p>
+</div>
+
+<div id="mechanic_rides">
+<h4>Assigned Rides</h4>
+<ol>
+  <% @rides.each do |ride| %>
+    <li><%= ride.name %></li>
+  <% end %>
+</ol>
