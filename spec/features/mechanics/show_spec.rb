@@ -9,10 +9,10 @@ RSpec.describe "Mechantic show page" do
     @ride_4 = @amusement_park.rides.create!(name: "ride_4", thrill_rating: 5, open: false)
     @mechanic_1 = Mechanic.create!(name: "Guy the mechanic", years_experience: 22)
     @mechanic_2 = Mechanic.create!(name: "Girl the mechanic", years_experience: 33)
-    @mechanic_ride_1 = MechanicRide.create!(mechanic_id: @mechanic_1.id, ride_id: @ride_1)
-    @mechanic_ride_2 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_2)
-    @mechanic_ride_3 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_3)
-    @mechanic_ride_4 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_4)
+    @mechanic_ride_1 = MechanicRide.create!(mechanic_id: @mechanic_1.id, ride_id: @ride_1.id)
+    @mechanic_ride_2 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_2.id)
+    @mechanic_ride_3 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_3.id)
+    @mechanic_ride_4 = MechanicRide.create!(mechanic_id: @mechanic_2.id, ride_id: @ride_4.id)
   end
 
   describe "As a user" do
