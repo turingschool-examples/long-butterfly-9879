@@ -34,7 +34,7 @@ RSpec.describe 'Mechanic show page' do
         within('.form') {
         expect(page).to have_content('Add a ride to workload:')
         expect(page).to have_field(:ride_id)
-        expect(page).to have_button(:submit)
+        expect(page).to have_button("Submit")
         }
       end
     end

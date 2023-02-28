@@ -4,3 +4,11 @@
 <% @rides.each do |ride| %>
   <%= ride.name %>
 <% end %>
+<div class="form">
+<b>Add a ride to workload:</b>
+ <%= form_with url: "/mechanics/#{@mechanic.id}/rides", method: :post, local: true do |form| %>
+        <%= form.label :ride_id, "Ride Id:  "%><br><br>
+        <%= form.number_field :ride_id %>
+        <%= form.submit "Submit" %>
+      <% end %>
+</div>
