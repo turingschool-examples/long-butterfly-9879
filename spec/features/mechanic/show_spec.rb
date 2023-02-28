@@ -11,18 +11,25 @@ RSpec.describe "Mechanic#Show" do
 
     @tech_1 = Mechanic.create!(name: "Bill", years_experience: 4)
     @tech_2 = Mechanic.create!(name: "Ted", years_experience: 7)
+
+    MechanicRide.create!(mechanic_id: @tech_1.id, ride_id: @ride_1.id)
+    MechanicRide.create!(mechanic_id: @tech_1.id, ride_id: @ride_2.id)
     
     visit "/mechanics/#{@tech_1.id}"
   end
 
   it "shows a mechanics name, years of experience" do
     within("#mechanic_info") do
-      expect(page).to have_content(@tech_1.name)
-      expect(page).to have_content(@tech_1.years_experience)
+      expect(page).to have_content("Name: #{@tech_1.name}")
+      expect(page).to have_content("Years of Experience: #{@tech_1.years_experience}")
+      expect(page).to_not have_content(@tech_2.name)
     end
   end
 
   it "shows the names of all rides they are working on" do
-
+    within("#mechanic_rides") do
+      expect(page).to have_content(@ride_1.name)
+      expect(page).to have_content(@ride_2.name)
+    end
   end
 end
