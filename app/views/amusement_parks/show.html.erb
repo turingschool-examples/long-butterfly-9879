@@ -1,0 +1,6 @@
+<h1><%= "Park: #{@park.name}" %></h1>
+<br><br>
+<b>Mechanics:</b>
+<% @mechanics.each do |mechanic| %>
+<%= mechanic.name %><br>
+<% end %>
