@@ -13,12 +13,29 @@ RSpec.describe 'Mechanic show page' do
         # require 'pry'; binding.pry
         visit "/mechanics/#{mechanic.id}"
 
-        expect(page).to have_content("Name: #{mechanic.name}")
+        expect(page).to have_content("Mechanic: #{mechanic.name}")
         expect(page).to have_content("Years of Experience: #{mechanic.years_experience}")
-        expect(page).to have_content("Rides:")
+        expect(page).to have_content("Current rides they're working on")
         expect(page).to have_content("#{ride1.name}")
 
         expect(page).to have_content("#{ride1.name}")
+      end
+
+      it 'will have a form to add a ride to the mechanic' do 
+        park = AmusementPark.create!(name: "Six Flags", admission_cost: 10)
+        ride1 = park.rides.create!(name: "Tower of doom", thrill_rating: 10, open: true)
+        ride2 = park.rides.create!(name: "Splash Mountain", thrill_rating: 10, open: true)
+        mechanic = Mechanic.create!(name: "Brian", years_experience: 0)
+        RideMechanic.create!(mechanic: mechanic, ride: ride1)
+        RideMechanic.create!(mechanic: mechanic, ride: ride2)
+
+        visit "/mechanics/#{mechanic.id}"
+        
+        within('.form') {
+        expect(page).to have_content('Add a ride to workload:')
+        expect(page).to have_field(:ride_id)
+        expect(page).to have_button(:submit)
+        }
       end
     end
   end
