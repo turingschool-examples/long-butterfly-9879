@@ -4,6 +4,7 @@ class Ride < ApplicationRecord
   has_many :mechanics, through: :mechanic_rides
 
   def average_tech_exp
-    require 'pry'; binding.pry
+    self.mechanics
+    .average(:years_experience).to_f
   end
 end
