@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Mechanic, type: :model do
+RSpec.describe RideMechanic, type: :model do
   describe 'relationships' do
     it { should belong_to(:ride) }
     it { should belong_to(:mechanic) }
@@ -18,6 +18,13 @@ RSpec.describe Mechanic, type: :model do
     RideMechanics.create!(ride_id: @scrambler.id, mechanic_id: @kara.id)
   end
   
+  describe '#class_methods' do
+    context '#add_to_workload' do
+      it 'adds an association between a ride and a mechanic' do
+        expect(RideMechanics.add_to_workload).to eq()
+      end
+    end
+  end
 
 
 end

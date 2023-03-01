@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Mechanic', type: :feature do
   describe 'Mechanic Show Page' do
-    let!(:kara) { Mechanic.create!(name: "Kara Smith") }
+    let!(:kara) { Mechanic.create!(name: "Kara Smith", years_experience: 11) }
 
     before do
       @six_flags = AmusementPark.create!(name: 'Six Flags', admission_cost: 75)

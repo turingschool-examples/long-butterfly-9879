@@ -19,6 +19,10 @@ RSpec.describe Mechanic, type: :model do
   end
 
   describe '#class_methods' do
-
+    context '#add_to_workload' do
+      it 'adds an association between a ride and a mechanic' do
+        expect(Mechanic.add_to_workload).to eq()
+      end
+    end
   end
 end

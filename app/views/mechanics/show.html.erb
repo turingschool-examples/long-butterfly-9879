@@ -11,3 +11,11 @@
     <p><%=  ride.name %></p>
   <% end %>
 </section>  
+<section id="add_to_workload">
+  <%= form_with url: mechanic_path(@mechanic.id), method: :patch, local: true do |form| %>
+    <%= form.label :ride_id, "Ride ID:" %>
+    <%= form.text_field :ride_id, required: true%>
+    <br>
+    <%= form.submit "Submit" %>
+  <% end %>
+</section>
