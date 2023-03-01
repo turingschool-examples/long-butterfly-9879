@@ -14,15 +14,19 @@ RSpec.describe 'Amusement Park Show Page', type: :feature do
   let!(:tony) { Mechanic.create!(name: 'Tony Hawk', years_experience: 1) }
   let!(:steve) { Mechanic.create!(name: 'Steve Caballero', years_experience: 7) }
   let!(:rodney) { Mechanic.create!(name: 'Rodney Mullen', years_experience: 3) }
+  let!(:bucky) { Mechanic.create!(name: 'Bucky Lasek', years_experience: 3) }
 
   before(:each) do
     RideMechanic.create!(ride: ride_1, mechanic: bob)
     RideMechanic.create!(ride: ride_2, mechanic: bob)
+    RideMechanic.create!(ride: ride_2, mechanic: steve)
     RideMechanic.create!(ride: ride_3, mechanic: bob)
+    RideMechanic.create!(ride: ride_3, mechanic: bucky)
     RideMechanic.create!(ride: ride_4, mechanic: tony)
     RideMechanic.create!(ride: ride_5, mechanic: tony)
+    RideMechanic.create!(ride: ride_6, mechanic: bucky)
+    RideMechanic.create!(ride: ride_6, mechanic: bob)
     RideMechanic.create!(ride: ride_6, mechanic: steve)
-    RideMechanic.create!(ride: ride_2, mechanic: steve)
     RideMechanic.create!(ride: ride_7, mechanic: rodney)
 
     visit amusement_park_path(park_1.id)
@@ -44,6 +48,23 @@ RSpec.describe 'Amusement Park Show Page', type: :feature do
           expect(page).to have_content(steve.name)
           expect(page).to_not have_content(rodney.name)
         end
+      end
+
+      it "Then I see a list of all of the park's rides" do
+        expect(page).to have_content("Park's Rides:")
+        
+        within 'ul#park_rides' do
+          expect(page).to have_content(ride_1.name)
+          expect(page).to have_content(ride_2.name)
+          expect(page).to have_content(ride_3.name)
+          expect(page).to have_content(ride_4.name)
+          expect(page).to have_content(ride_5.name)
+          expect(page).to have_content(ride_6.name)
+        end
+      end
+
+      xit " next to each ride I see the average experience of the mechanics working on it, ordered by the most average experience to least" do
+
       end
     end
   end

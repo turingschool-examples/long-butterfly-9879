@@ -2,6 +2,14 @@
 <br>
 <h3> Price of Admission: <%= number_to_currency(@park.admission_cost) %></h3>
 <br>
+<h3>Park's Rides:</h3>
+<ul id="park_rides">
+  <% @rides.each do |ride| %>
+    <li><%= ride.name %></li>
+    <br>
+  <% end %>
+</ul>
+<br>
 <h3>Mechanics on Site:</h3>
 <ul id="mech_names">
   <% @mechanics.each do |mechanic| %>

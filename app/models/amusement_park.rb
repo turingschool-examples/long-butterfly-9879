@@ -6,4 +6,8 @@ class AmusementPark < ApplicationRecord
   def mechanic_names
     mechanics.distinct.pluck(:name)
   end
+
+  def avg_mech_ride_exp
+    rides.joins(:mechanics).group("rides.id").select("rides.*, AVG(mechanics.years_experience) AS avg_experience").order("avg_experience DESC")
+  end
 end

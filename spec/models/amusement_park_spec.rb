@@ -16,7 +16,7 @@ RSpec.describe AmusementPark, type: :model do
   let!(:ride_5) { park_1.rides.create!(name: 'Merry Go Round', thrill_rating: 2, open: true) }
   let!(:ride_6) { park_1.rides.create!(name: 'Sheer Terror and Panic', thrill_rating: 10, open: true) }
   let!(:ride_7) { park_2.rides.create!(name: 'Lazy River', thrill_rating: 1, open: true) }
-  let!(:bob) { Mechanic.create!(name: 'Bob Burnquist', years_experience: 5) }
+  let!(:bob) { Mechanic.create!(name: 'Bob Burnquist', years_experience: 7) }
   let!(:tony) { Mechanic.create!(name: 'Tony Hawk', years_experience: 1) }
   let!(:steve) { Mechanic.create!(name: 'Steve Caballero', years_experience: 7) }
   let!(:rodney) { Mechanic.create!(name: 'Rodney Mullen', years_experience: 3) }
@@ -25,17 +25,20 @@ RSpec.describe AmusementPark, type: :model do
   before(:each) do
     RideMechanic.create!(ride: ride_1, mechanic: bob)
     RideMechanic.create!(ride: ride_2, mechanic: bob)
+    RideMechanic.create!(ride: ride_2, mechanic: steve)
     RideMechanic.create!(ride: ride_3, mechanic: bob)
+    RideMechanic.create!(ride: ride_3, mechanic: bucky)
     RideMechanic.create!(ride: ride_4, mechanic: tony)
     RideMechanic.create!(ride: ride_5, mechanic: tony)
+    RideMechanic.create!(ride: ride_6, mechanic: bucky)
+    RideMechanic.create!(ride: ride_6, mechanic: bob)
     RideMechanic.create!(ride: ride_6, mechanic: steve)
-    RideMechanic.create!(ride: ride_2, mechanic: steve)
     RideMechanic.create!(ride: ride_7, mechanic: rodney)
   end
 
   describe '#instance_methods' do
     it '#mechanic_names' do
-      expect(park_1.mechanic_names).to eq([bob.name, steve.name, tony.name])
+      expect(park_1.mechanic_names).to eq([bob.name, bucky.name, steve.name, tony.name])
       expect(park_1.mechanic_names).to_not eq([bob.name, bob.name, bob.name, steve.name, steve.name, steve.name, steve.name])
       expect(park_1.mechanic_names).to_not eq([bob.name, steve.name, tony.name, rodney.name])
       expect(park_2.mechanic_names).to eq([rodney.name])
@@ -43,6 +46,10 @@ RSpec.describe AmusementPark, type: :model do
       RideMechanic.create!(ride: ride_7, mechanic: bucky)
       
       expect(park_2.mechanic_names).to eq([bucky.name, rodney.name])
+    end
+
+    it '#avg_mech_ride_exp' do
+      expect(park_1.avg_mech_ride_exp).to eq([ride_1, ride_2, ride_6, ride_3, ride_4, ride_5])
     end
   end
 end
