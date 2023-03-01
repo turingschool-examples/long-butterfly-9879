@@ -11,7 +11,7 @@ RSpec.describe Mechanic, type: :feature do
       @heart_stopper = Ride.create!(amusement_park_id: @six_flags.id, name: "Heart Stopper", thrill_rating: 4, open: true) 
       MechanicRide.create!(mechanic_id: @molly.id, ride_id: @mind_eraser.id)
       MechanicRide.create!(mechanic_id: @molly.id, ride_id: @side_winder.id)
-      visit mechanic_path(@molly)
+      visit "/mechanics/#{@molly.id}"
     end
     it "displays the mechanics name" do
       expect(page).to have_content("Mechanic: Molly Master Mechanic")
@@ -24,20 +24,31 @@ RSpec.describe Mechanic, type: :feature do
     it 'displays all of the rides they are working on' do
      
       expect(page).to have_content("Working On:")
-      within "#rides" do 
-        expect(page).to have_content("Mind Eraser Side Winder")
+      within "#rides-#{@mind_eraser.id}" do 
+        expect(page).to have_content("Mind Eraser")
+      end
+      within "#rides-#{@side_winder.id}" do 
+        expect(page).to have_content("Side Winder")
       end
     end
 
-    it "displays a form to add a ride to their workload" do 
+    it "displays a form to add a ride to their workload and adds the ride" do 
       fill_in 'Ride id:', with: "#{@heart_stopper.id}"
+      
       click_on 'Submit'
-      expect(current_path).to eq(mechanic_path(@molly))
-    end
-    
-    it 'displays the newly added ride under rides the mechanic is working on' do 
-      save_and_open_page
-      expect(page).to have_content("Mind Eraser Side Winder Heart Stopper")
+      expect(current_path).to eq("/mechanics/#{@molly.id}")
+  
+     within "#rides-#{@mind_eraser.id}" do 
+        expect(page).to have_content("Mind Eraser")
+      end
+
+     within "#rides-#{@side_winder.id}" do 
+        expect(page).to have_content("Side Winder")
+      end
+
+     within "#rides-#{@heart_stopper.id}" do 
+        expect(page).to have_content("Heart Stopper")
+      end
     end
   end
 
