@@ -21,26 +21,48 @@ RSpec.describe "Mechanics Show", type: :feature do
       end
 
       it "See the name, years of experience, and name of all rides they are working on" do
-        save_and_open_page
         expect(page).to have_content("Isaac Clarke")
         expect(page).to have_content("#{isaac.name}")
-
+        
         expect(page).to have_content("13")
         expect(page).to have_content("#{isaac.years_experience}")
-
+        
         expect(page).to have_content("Dead Space Experience")
         expect(page).to have_content("#{dead.name}")
-
+        
         expect(page).to have_content("USG Ishimura")
         expect(page).to have_content("#{ishimura.name}")
-
+        
         expect(page).to_not have_content("Chai")
         expect(page).to_not have_content("#{chai.name}")
         expect(page).to_not have_content("Hi-Fi Rush")
         expect(page).to_not have_content("#{hifi.name}")
       end
+      
+      it "I see a form to add a ride to the workload" do
+        expect(page).to have_field("ride_id")
+      end
 
+      it "When I fill in that field with an id of an existing ride and click submit, I'm taken back to the mechanic's show page" do
+        fill_in "ride_id", with: "#{hifi.id}"
+        # require 'pry'; binding.pry
+        click_button "Submit"
 
+        expect(current_path).to eq(mechanic_path(isaac))
+      end
+
+      it "Fill in with ride id, click button, return to show page, and I seethe name of the newly added ride to page" do
+        expect(page).to_not have_content("Hi-Fi Rush")
+        expect(page).to_not have_content("#{hifi.name}")
+
+        fill_in "ride_id", with: "#{hifi.id}"
+        click_button "Submit"
+
+        save_and_open_page
+
+        expect(page).to have_content("Hi-Fi Rush")
+        expect(page).to have_content("#{hifi.name}")
+      end
     end
   end
 end

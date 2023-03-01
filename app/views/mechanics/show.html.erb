@@ -6,3 +6,10 @@
     <li><%= ride.name %></li>
   <% end %>
 </ul>
+
+<%=  form_with url:mechanic_rides_path, local: true do |form| %>
+  <%= form.hidden_field :mechanic_id, value: @mechanic.id %>
+  <%= form.label "Ride Id: " %>
+  <%= form.number_field :ride_id %>
+  <%= form.submit "Submit" %>
+<% end %>
