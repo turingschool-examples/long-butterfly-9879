@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   resources :mechanics, only: :show do
   end
 
+  resources :amusement_parks, only: :show do
+  end
+
   post '/mechanics/:id/rides', to: 'ride_mechanics#create'
 end
