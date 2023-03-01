@@ -7,3 +7,13 @@
     <p><%=ride.name%></p>
   <%end%>
 </div>
+
+<div id="add_ride_form" >
+  <p> Add a ride to <%=@mechanic.name%>'s workflow </p>
+  <%= form_with model: @merchanic_ride, url: mechanic_rides_path, local: true do |f| %>
+    <%= f.label :ride_id, "Ride ID:" %>
+    <%= f.number_field :ride_id %>
+    <%= f.hidden_field :mechanic_id, value: @mechanic.id %>
+    <%= f.button "Submit" %>
+  <%end%>
+</div>
