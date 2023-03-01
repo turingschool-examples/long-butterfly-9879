@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Mechanic Show Page', type: :feature do
-  let!(:park_1) { AmusementPark.create!(name: 'Six Flags Denver', admission_cost: 30) }
+  let!(:park_1) { AmusementPark.create!(name: 'Six Flags Denver', admission_cost: 40) }
   let!(:ride_1) { park_1.rides.create!(name: 'Twister 2', thrill_rating: 7, open: true) }
   let!(:ride_2) { park_1.rides.create!(name: 'Mind Eraser', thrill_rating: 9, open: true) }
   let!(:ride_3) { park_1.rides.create!(name: 'Tower of Terror', thrill_rating: 8, open: true) }
