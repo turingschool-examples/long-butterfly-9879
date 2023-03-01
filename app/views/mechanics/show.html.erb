@@ -9,8 +9,9 @@
 
 <div id="add_ride">
 <h3>Add Ride to Mechanic's Workload:</h3>
-<%= form_with model: @mechanic, local: true  do |f|%>
+<%= form_with model: RideMechanic.new, local: true  do |f|%>
 <p>Add Ride: <%=f.text_field :ride_id%></p>
+<%= f.hidden_field :mechanic_id, value: @mechanic.id%>
 <p><%= f.submit 'Add Ride'%>
 <%end%>
 </div>

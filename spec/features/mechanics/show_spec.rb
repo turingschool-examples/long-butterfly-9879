@@ -36,12 +36,13 @@ describe 'As a user' do
         it 'I see a form to add a ride to their workload' do
           within('#add_ride') do
             expect(page).to have_content("Add Ride to Mechanic's Workload")
-            expect(page).to have_field('mechanic[ride_id]')
+
+            expect(page).to have_field('ride_mechanic[ride_id]')
           end
         end
 
         it "I fill in that field with an id of an existing ride and click Submit I’m taken back to that mechanic's show page" do
-          fill_in 'mechanic[ride_id]', with: @r4.id
+          fill_in 'ride_mechanic[ride_id]', with: @r4.id
           click_button 'Add Ride'
 
           within('#add_ride') do
@@ -50,7 +51,7 @@ describe 'As a user' do
         end
 
         it "And I see the name of that newly added ride on this mechanic's show page" do
-          fill_in 'mechanic[ride_id]', with: @r4.id
+          fill_in 'ride_mechanic[ride_id]', with: @r4.id
           click_button 'Add Ride'
 
           
@@ -64,7 +65,7 @@ describe 'As a user' do
         end
 
         it 'Does not add the ride to the mechanic workload if the ride does not exist' do
-          fill_in 'mechanic[ride_id]', with: "an_id"
+          fill_in 'ride_mechanic[ride_id]', with: "an_id"
           click_button 'Add Ride'
 
           expect(page).to have_content("Mechanic Workload Updated Failed: Inviable Ride ID")
