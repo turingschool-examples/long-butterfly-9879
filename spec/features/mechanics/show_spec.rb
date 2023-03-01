@@ -39,7 +39,6 @@ RSpec.describe "Mechantic show page" do
           describe "Im taken back to that mechanic's show page" do
             it "And I see the name of that newly added ride on this mechanic's show page" do 
               visit mechanic_path(@mechanic_1)
-              save_and_open_page
               
               
               expect(page).to_not have_content("ride_5")

@@ -22,11 +22,12 @@ RSpec.describe "Amusment Park show page" do
     describe "When I visit an amusement parks show page" do
       it "Then I see the name and price of admissions for that amusement park" do 
         visit amusement_park_path(@amusement_park)
+        save_and_open_page
 
         expect(page).to have_content(@amusement_park.name)
 
         within("#park_details") do
-          expect(page).to have_content("Price of admissions: #{@amusement_park.admission_cost}")
+          expect(page).to have_content("Price of admissions: $#{@amusement_park.admission_cost}")
         end
 
       end
