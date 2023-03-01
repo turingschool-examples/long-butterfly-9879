@@ -29,10 +29,32 @@ RSpec.describe 'Mechanic', type: :feature do
         end
 
         it 'I see the names of all rides they are working on' do
-          save_and_open_page
           within("section#mechanics_rides") do
-            expect(page).to have_content(kara.rides.first.name)
-            expect(page).to have_content(kara.rides.second.name)
+            expect(page).to have_content(@hurler.name)
+            expect(page).to have_content(@scrambler.name)
+          end
+        end
+
+        it 'I see a form to add a ride to their workload' do
+          save_and_open_page
+          within("section#add_to_workload") do
+            expect(page).to have_field("Ride ID:")
+            expect(page).to have_button("Submit")
+          end
+        end
+
+        it "can fill out that field with an id of an existing ride and click 'Submit', and is taken back to that mechanic's show page" do
+
+          within("section#add_to_workload") do
+            fill_in "Ride ID:", with: "#{@ferris.id}"
+            click_button "Submit"
+          end
+          
+          expect(current_path).to eq(mechanic_path(kara.id))
+          within("section#mechanics_rides") do
+            expect(page).to have_content(@hurler.name)
+            expect(page).to have_content(@scrambler.name)
+            expect(page).to have_content(@ferris.name)
           end
         end
       end

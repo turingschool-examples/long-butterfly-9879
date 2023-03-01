@@ -6,7 +6,7 @@
   <p>Years Experience: <%=  @mechanic.years_experience %></p>
 </section>
 <section id="mechanics_rides">
-<h3><%=  @mechanic.name%>'s Rides</h3>
+<h3>Current rides <%=  @mechanic.name%> is working on:</h3>
   <% @mechanic.rides.each do |ride| %>
     <p><%=  ride.name %></p>
   <% end %>
