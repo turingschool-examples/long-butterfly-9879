@@ -45,7 +45,6 @@ RSpec.describe "Mechanics Show", type: :feature do
 
       it "When I fill in that field with an id of an existing ride and click submit, I'm taken back to the mechanic's show page" do
         fill_in "ride_id", with: "#{hifi.id}"
-        # require 'pry'; binding.pry
         click_button "Submit"
 
         expect(current_path).to eq(mechanic_path(isaac))
@@ -57,8 +56,6 @@ RSpec.describe "Mechanics Show", type: :feature do
 
         fill_in "ride_id", with: "#{hifi.id}"
         click_button "Submit"
-
-        save_and_open_page
 
         expect(page).to have_content("Hi-Fi Rush")
         expect(page).to have_content("#{hifi.name}")
